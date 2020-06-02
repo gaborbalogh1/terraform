@@ -45,3 +45,52 @@ resource "aws_security_group" "default" {
   }
 
 }
+
+terraform {
+  backend "remote" {
+    organization = "MyDemoAWSOrg"
+
+    workspaces {
+      name = "AWS"
+    }
+  }
+}
+
+provider "aws" {
+	access_key = var.access_key
+	secret_key = var.secret_key
+	region = var.region
+}
+
+resource "aws_instance" "example" {
+
+	ami = "ami-01a6e31ac994bbc09"
+	instance_type = "t2.micro"
+	
+	provisioner "local-exec" {
+    command = "echo ${aws_instance.example.public_ip} > ip_address.txt"
+  }
+
+}
+
+resource "aws_instance" "example2" {
+
+	ami = "ami-01a6e31ac994bbc09"
+	instance_type = "t2.micro"
+	
+	provisioner "local-exec" {
+    command = "echo ${aws_instance.example2.public_ip} > ip_address.txt"
+  }
+
+}
+
+resource "aws_instance" "example3" {
+
+	ami = "ami-01a6e31ac994bbc09"
+	instance_type = "t2.micro"
+	
+	provisioner "local-exec" {
+    command = "echo ${aws_instance.example3.public_ip} > ip_address.txt"
+  }
+
+}
