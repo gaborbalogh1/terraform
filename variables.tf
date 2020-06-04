@@ -23,4 +23,7 @@ variable "region"{
 	default = "eu-west-2"
 }
 
-#comment
+#add elestic ip to new ami default instance
+data "aws_eip" "by_allocation_id" {
+  id = "eipalloc-07ee242e2adb649f2"
+}
