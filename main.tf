@@ -12,7 +12,7 @@ provider "aws" {
 }
 
 resource "aws_eip_association" "eip_assoc" {
-  instance_id   = "aws_instance.default[0]"
+  instance_id   = "aws_instance.default[1]"
   allocation_id = "eipalloc-07ee242e2adb649f2"
 }
 
