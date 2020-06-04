@@ -47,13 +47,13 @@ resource "aws_instance" "example2" {
 
 }
 
-resource "aws_instance" "CentOS" {
+resource "aws_instance" "PwsLinux" {
 
-	ami = "ami-000500a8752ccd512"
+	ami = "ami-06b6dafd50fc45e21"
 	instance_type = "t2.micro"
 	
 	provisioner "local-exec" {
-    command = "echo ${aws_instance.CentOS.public_ip} > ip_address.txt"	
+    command = "echo ${aws_instance.PwsLinux.public_ip} > ip_address.txt"	
   }
 
 }
