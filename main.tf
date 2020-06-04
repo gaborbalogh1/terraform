@@ -7,45 +7,6 @@ terraform {
   }
 }
 
-# Use AWS Terraform provider
-provider "aws" {
-  region = "eu-west-2"
-}
-
-# Create EC2 instance
-resource "aws_instance" "default" {
-  ami                    = var.ami
-  count                  = var.instance_count
-  key_name               = var.key_name
-  vpc_security_group_ids = [aws_security_group.default.id]
-  source_dest_check      = false
-  instance_type          = var.instance_type
-
-  tags = {
-    Name = "terraform-default"
-  }
-}
-
-# Create Security Group for EC2
-resource "aws_security_group" "default" {
-  name = "terraform-default-sg"
-
-  ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-}
-
 provider "aws" {
 	access_key = var.access_key
 	secret_key = var.secret_key
@@ -61,6 +22,20 @@ resource "aws_instance" "example" {
     command = "echo ${aws_instance.example.public_ip} > ip_address.txt"
   }
 
+}
+
+# Create EC2 instance
+resource "aws_instance" "default" {
+  ami                    = var.ami
+  count                  = var.instance_count
+  key_name               = var.key_name
+  vpc_security_group_ids = [aws_security_group.default.id]
+  source_dest_check      = false
+  instance_type          = var.instance_type
+
+  tags = {
+    Name = "terraform-default"
+  }
 }
 
 resource "aws_instance" "example2" {
@@ -81,6 +56,26 @@ resource "aws_instance" "example3" {
 	
 	provisioner "local-exec" {
     command = "echo ${aws_instance.example3.public_ip} > ip_address.txt"
+  }
+
+}
+
+# Create Security Group for EC2
+resource "aws_security_group" "default" {
+  name = "terraform-default-sg"
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
 }
