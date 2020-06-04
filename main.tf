@@ -9,7 +9,7 @@ terraform {
 
 
 provider "aws" {
-	region = "eu-west-2" 
+	region = var.region 
 }
 
 # Create EC2 instance
