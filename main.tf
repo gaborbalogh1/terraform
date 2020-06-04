@@ -12,6 +12,11 @@ provider "aws" {
 	region = var.region 
 }
 
+resource "aws_eip_association" "eip_assoc" {
+  instance_id   = "${aws_instance.default.id}"
+  allocation_id = "eipalloc-07ee242e2adb649f2"
+}
+
 # Create EC2 instance
 resource "aws_instance" "default" {
   ami                    = var.ami
@@ -19,7 +24,7 @@ resource "aws_instance" "default" {
   key_name	         = var.key_name
   vpc_security_group_ids = [aws_security_group.default.id]
   source_dest_check      = false
-  instance_type          = var.instance_type
+  instance_type          = var.instance_type	
 
   tags = {
     Name = "terraform-default"
