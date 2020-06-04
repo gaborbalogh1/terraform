@@ -16,7 +16,7 @@ variable "ami" {
   description = "Base AMI to launch the instances"
 
   # Community NGINX AMI
-  default = "ami-004def2e4cabf42fe"
+  default = "ami-0330ffc12d7224386"
 }
 
 variable "region"{
