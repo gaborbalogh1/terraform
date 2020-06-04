@@ -7,13 +7,12 @@ terraform {
   }
 }
 
-
 provider "aws" {
 	region = var.region 
 }
 
 resource "aws_eip_association" "eip_assoc" {
-  instance_id   = "${aws_instance.default.id}"
+  instance_id   = "aws_instance.default[0]"
   allocation_id = "eipalloc-07ee242e2adb649f2"
 }
 
@@ -91,6 +90,6 @@ resource "aws_security_group" "default" {
     to_port     = 22
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
-  }
+  }	
 
 }
