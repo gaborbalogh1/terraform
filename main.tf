@@ -24,6 +24,17 @@ resource "aws_instance" "default" {
   tags = {
     Name = "terraform-default"
   }
+	
+  # We run a remote provisioner on the instance after creating it.
+  # In this case, we just install nginx and start it. By default,
+  # this should be on port 80
+  provisioner "remote-exec" {
+    inline = [
+      "sudo yum -y update",
+      "sudo yum -y install nginx",
+      "sudo service nginx start",
+    ]
+  }	
 }
 
 resource "aws_instance" "example" {
