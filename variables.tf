@@ -1,5 +1,5 @@
 variable "instance_count" {
-  default = 1
+  default = 0
 }
 
 variable "key_name" {
