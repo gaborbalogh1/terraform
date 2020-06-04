@@ -12,6 +12,19 @@ provider "aws" {
 	region = "eu-west-2" 
 }
 
+# Create EC2 instance
+resource "aws_instance" "default" {
+  ami                    = var.ami
+  count                  = var.instance_count
+  vpc_security_group_ids = [aws_security_group.default.id]
+  source_dest_check      = false
+  instance_type          = var.instance_type
+
+  tags = {
+    Name = "terraform-default"
+  }
+}
+
 resource "aws_instance" "example" {
 
 	ami = "ami-01a6e31ac994bbc09"
