@@ -12,17 +12,17 @@ provider "aws" {
 }
 
 # Create EC2 instance
-resource "aws_instance" "default" {
+resource "aws_instance" "Jenkins" {
   ami                    = var.ami
   count                  = var.instance_count
   key_name	         = var.key_name
   vpc_security_group_ids = [aws_security_group.default.id]
   source_dest_check      = false
   instance_type          = var.instance_type	
-  # associate_public_ip_address = true
+  associate_public_ip_address = true
 	
   tags = {
-    Name = "terraform-default"
+    Name = "terraform-Jenkins"
   }
 }
 
@@ -60,7 +60,7 @@ resource "aws_instance" "example3" {
 }
 
 # Create Security Group for EC2
-resource "aws_security_group" "default" {
+resource "aws_security_group" "Jenkins" {
   name = "terraform-default-sg"
 
   ingress {
