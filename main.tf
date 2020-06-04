@@ -7,10 +7,9 @@ terraform {
   }
 }
 
+
 provider "aws" {
-	access_key = var.access_key
-	secret_key = var.secret_key
-	region = var.region
+	region = "eu-west-2" 
 }
 
 resource "aws_instance" "example" {
@@ -22,20 +21,6 @@ resource "aws_instance" "example" {
     command = "echo ${aws_instance.example.public_ip} > ip_address.txt"
   }
 
-}
-
-# Create EC2 instance
-resource "aws_instance" "default" {
-  ami                    = var.ami
-  count                  = var.instance_count
-  key_name               = var.key_name
-  vpc_security_group_ids = [aws_security_group.default.id]
-  source_dest_check      = false
-  instance_type          = var.instance_type
-
-  tags = {
-    Name = "terraform-default"
-  }
 }
 
 resource "aws_instance" "example2" {
