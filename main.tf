@@ -16,6 +16,12 @@ resource "aws_eip_association" "eip_assoc" {
   allocation_id = "aws_eip.default.id"
 }
 
+resource "aws_eip" "ip" {
+  count    = 4
+  instance = "element(aws_instance.default.*.id, count.index)"
+  vpc      = true
+}
+
 resource "aws_eip" "default" {
   vpc = true
 }
