@@ -12,8 +12,8 @@ provider "aws" {
 }
 
 resource "aws_eip_association" "eip_assoc" {
-  instance_id   = "aws_instance.default[count.index]"
-  allocation_id = "${aws_eip.default.id}"
+  instance_id   = "aws_instance.default[1]"
+  allocation_id = "aws_eip.default.id"
 }
 
 resource "aws_eip" "default" {
