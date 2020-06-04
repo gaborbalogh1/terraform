@@ -3,6 +3,7 @@ String credentialsId = 'awsCredentials'
 
 node {
 env.PATH += ":/usr/local/bin"
+}
 
 try {
   stage('checkout') {
@@ -91,5 +92,4 @@ finally {
   if (currentBuild.result == 'SUCCESS') {
     currentBuild.result = 'SUCCESS'
   }
-}
 }
