@@ -11,21 +11,6 @@ provider "aws" {
 	region = var.region 
 }
 
-resource "aws_eip_association" "eip_assoc" {
-  instance_id   = "aws_instance.default[1]"
-  allocation_id = "aws_eip.default.id"
-}
-
-resource "aws_eip" "ip" {
-  count    = 4
-  instance = "element(aws_instance.default.*.id, count.index)"
-  vpc      = true
-}
-
-resource "aws_eip" "default" {
-  vpc = true
-}
-
 # Create EC2 instance
 resource "aws_instance" "default" {
   ami                    = var.ami
