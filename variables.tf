@@ -1,5 +1,5 @@
 variable "instance_count" {
-  default = 0
+  default = 2
 }
 
 variable "key_name" {
@@ -15,7 +15,7 @@ variable "instance_type" {
 variable "ami" {
   description = "Base AMI to launch the instances"
 
-  # Community NGINX AMI
+  # change this to amazon linux 2 free tier
   default = "ami-032598fcc7e9d1c7a"
 }
 
