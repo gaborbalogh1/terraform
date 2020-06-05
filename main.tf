@@ -27,14 +27,15 @@ resource "aws_instance" "default" {
 
 resource "aws_instance" "example" {
 
-	ami = "ami-01a6e31ac994bbc09"
-	instance_type = "t2.micro"
-	vpc_security_group_ids = [aws_security_group.Terraform_Examples.id]
-	  tags = {
+  ami = "ami-01a6e31ac994bbc09"
+  instance_type = "t2.micro"
+  vpc_security_group_ids = [aws_security_group.Terraform_Examples.id]
+  source_dest_check      = false
+  tags = {
     Name = "terraform-Example1"
   }
 	
-	provisioner "local-exec" {
+  provisioner "local-exec" {
     command = "echo ${aws_instance.example.public_ip} > ip_address.txt"
   }
 
@@ -42,13 +43,15 @@ resource "aws_instance" "example" {
 
 resource "aws_instance" "example2" {
 
-	ami = "ami-01a6e31ac994bbc09"
-	instance_type = "t2.micro"
-	vpc_security_group_ids = [aws_security_group.Terraform_Examples.id]
-		  tags = {
+  ami = "ami-01a6e31ac994bbc09"
+  instance_type = "t2.micro"
+  vpc_security_group_ids = [aws_security_group.Terraform_Examples.id]
+  source_dest_check      = false
+
+  tags = {
     Name = "terraform-Example2"
   }
-	provisioner "local-exec" {
+  provisioner "local-exec" {
     command = "echo ${aws_instance.example2.public_ip} > ip_address.txt"
   }
 
@@ -57,14 +60,15 @@ resource "aws_instance" "example2" {
 
 resource "aws_instance" "example3" {
 
-	ami = "ami-01a6e31ac994bbc09"
-	instance_type = "t2.micro"
-        vpc_security_group_ids = [aws_security_group.Terraform_Examples.id]
-	tags = {
+  ami = "ami-01a6e31ac994bbc09"
+  instance_type = "t2.micro"
+  vpc_security_group_ids = [aws_security_group.Terraform_Examples.id]
+  source_dest_check      = false
+  tags = {
     Name = "terraform-Example3"
   }
 	
-	provisioner "local-exec" {
+  provisioner "local-exec" {
     command = "echo ${aws_instance.example3.public_ip} > ip_address.txt"
   }
 
@@ -72,15 +76,16 @@ resource "aws_instance" "example3" {
 
 resource "aws_instance" "PwsLinux" {
 
-	ami = "ami-06b6dafd50fc45e21"
-	instance_type = "t2.micro"
-	vpc_security_group_ids = [aws_security_group.Terraform_Examples.id]
+  ami = "ami-06b6dafd50fc45e21"
+  instance_type = "t2.micro"
+  vpc_security_group_ids = [aws_security_group.Terraform_Examples.id]
+  source_dest_check      = false
 	
-        tags = {
+  tags = {
     Name = "terraform-PwsLinux"
   }
 	
-	provisioner "local-exec" {
+  provisioner "local-exec" {
     command = "echo ${aws_instance.PwsLinux.public_ip} > ip_address.txt"	
   }
 
