@@ -25,50 +25,6 @@ resource "aws_instance" "default" {
   }
 }
 
-resource "aws_instance" "example" {
-
-	ami = "ami-01a6e31ac994bbc09"
-	instance_type = "t2.micro"
-	
-	provisioner "local-exec" {
-    command = "echo ${aws_instance.example.public_ip} > ip_address.txt"
-  }
-
-}
-
-resource "aws_instance" "example2" {
-
-	ami = "ami-01a6e31ac994bbc09"
-	instance_type = "t2.micro"
-	
-	provisioner "local-exec" {
-    command = "echo ${aws_instance.example2.public_ip} > ip_address.txt"
-  }
-
-}
-
-resource "aws_instance" "PwsLinux" {
-
-	ami = "ami-06b6dafd50fc45e21"
-	instance_type = "t2.micro"
-	
-	provisioner "local-exec" {
-    command = "echo ${aws_instance.PwsLinux.public_ip} > ip_address.txt"	
-  }
-
-}
-
-resource "aws_instance" "example3" {
-
-	ami = "ami-01a6e31ac994bbc09"
-	instance_type = "t2.micro"
-	
-	provisioner "local-exec" {
-    command = "echo ${aws_instance.example3.public_ip} > ip_address.txt"
-  }
-
-}
-
 # Create Security Group for EC2
 resource "aws_security_group" "default" {
   name = "terraform-default-sg"
