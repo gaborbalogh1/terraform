@@ -80,13 +80,15 @@ resource "aws_instance" "PwsLinux" {
   instance_type = "t2.micro"
   vpc_security_group_ids = [aws_security_group.Terraform_Examples.id]
   source_dest_check      = false
+  key_name               = var.key_name2
 	
   tags = {
     Name = "terraform-PwsLinux"
   }
 	
   provisioner "local-exec" {
-    command = "echo ${aws_instance.PwsLinux.public_ip} > ip_address.txt"	
+    command = "echo ${aws_instance.PwsLinux.public_ip} > ip_address.txt"
+    command = "sudo yum update -y"
   }
 
 }
