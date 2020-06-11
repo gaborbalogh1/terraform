@@ -7,6 +7,11 @@ variable "key_name" {
   default     = "Jenkins"
 }
 
+variable "key_name2" {
+  description = "terraform-PwsLinux"
+  default     = "terraform-PwsLinux"
+}
+
 variable "instance_type" {
   description = "AWS instance type"
   default     = "t3.small"
