@@ -88,7 +88,7 @@ resource "aws_instance" "PwsLinux" {
 	
   provisioner "local-exec" {
     command = "echo ${aws_instance.PwsLinux.public_ip} > ip_address.txt"
-    command = "sudo yum update -y"
+    
   }
 
 }
