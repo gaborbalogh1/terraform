@@ -1,5 +1,5 @@
 // Jenkinsfile
-String credentialsId = 'awsCredentials'
+String credentialsId = 'github'
 
 node {
 env.PATH += ":/usr/local/bin"
